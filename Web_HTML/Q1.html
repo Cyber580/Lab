@@ -1,0 +1,375 @@
+<html>
+  <head>
+   <tile>DS LAB PROGRAM'S</tile> 
+   <meta name="DS" content="Lab program's">
+  </head>  
+   <body>
+    <h3>1.DLL Deletion</h3> 
+     <pre>
+        <i>
+            //Creating and Deleting Bomb's on train program 
+            #include<stdio.h>
+            #include<stdlib.h>
+            
+            void traverse();
+            void deletion();
+            void creation();
+            
+            struct DLL
+            {
+              int data;
+              struct DLL *rlink;
+              struct DLL *llink;     
+            }*head;
+            
+            int main()
+            {
+              int ch;
+              head = (struct DLL*)malloc(sizeof(struct DLL));
+              head->rlink = NULL;
+              head->llink = NULL;
+              head->data = 0;
+              while(1)
+              {
+               printf("\n\t*MENU*\n1) Creation or Installing Bomb\n2) Deleting Bomb\n3) Traverse or Bomb Number\n4) Exit\nEnter Your Choice: ");
+               scanf("%d",&ch);
+               switch(ch)
+               {
+                case 1: creation();
+                        break;
+                case 2: deletion();
+                        break;
+                case 3: traverse();
+                        break;        
+                case 4: exit(0);
+                default: printf("Invalid choice!\n");
+                         break;
+               }
+              }
+              
+              return 0;
+            }
+            
+            void creation()
+            {
+              // Blue team installing
+              struct DLL *newNode = (struct DLL*)malloc(sizeof(struct DLL));
+              newNode->rlink = NULL;
+              newNode->llink = NULL;
+              printf("Enter Bomb number to install: ");
+              scanf("%d",&newNode->data);
+              if(head->rlink == NULL)
+              {
+                head->rlink = newNode;
+                newNode->llink = head;
+              }
+              else
+              {
+                struct DLL *ptr = head->rlink;
+                while(ptr->rlink != NULL)
+                {
+                  ptr = ptr->rlink;
+                }
+                ptr->rlink = newNode;
+                newNode->llink = ptr;
+              }
+            }
+            
+            void deletion()
+            {
+              // Red team deleting
+              if(head->rlink == NULL)
+              {
+                printf("No bombs installed.\n");
+              }
+              else   
+              {   
+                int pos, key;
+                printf("\t*MENU*\n1) Deletion from the beginning\n2) Deletion from the end\n3) Deletion from any position\nEnter Your choice: ");
+                scanf("%d",&pos);
+                if(pos == 1)
+                {  
+                  struct DLL *ptr = head->rlink;
+                  struct DLL *ptr1 = ptr->rlink;
+                  head->rlink = ptr1;
+                  ptr1->llink = head;
+                  printf("Deleted Bomb %d\n",ptr->data);
+                  free(ptr);
+                }
+                else if(pos == 2)
+                {  
+                  struct DLL *ptr = head->rlink;
+                  struct DLL *ptr1 = ptr ;
+                  while(ptr->rlink != NULL)
+                  {
+                    ptr1 = ptr;
+                    ptr = ptr->rlink;
+                  }
+                  ptr1->rlink = NULL;
+                  printf("Deleted Bomb %d\n",ptr->data);
+                  free(ptr);
+                }
+                else if(pos == 3)
+                {
+                  struct DLL *ptr = head;
+                  struct DLL *ptr1; 
+                  printf("Enter Bomb number: ");
+                  scanf("%d",&key);
+                  while(ptr->rlink != NULL && ptr->data != key) 
+                  { 
+                    ptr1 = ptr;
+                    ptr = ptr->rlink;
+                  }
+                  if(ptr->rlink == NULL && ptr->data != key)
+                  {
+                    printf("Warning!! Bomb not Found\n");
+                  }
+                  else if (ptr->rlink == NULL && ptr->data == key)
+                  {
+                     ptr1->rlink = NULL;
+                     printf("Deleted Bomb %d\n",ptr->data);
+                     free(ptr);
+                  } 
+                  else
+                  {  
+                    ptr1 = ptr->rlink;
+                    ptr->llink->rlink = ptr1;
+                    ptr1->llink = ptr;
+                    printf("Deleted Bomb %d\n",ptr->data);
+                    free(ptr);
+                  }
+                }
+              } 
+            }
+            
+            void traverse()
+            {
+              if(head->rlink == NULL)
+              {
+                printf("No bombs installed.\n");
+              }
+              else 
+              {
+                struct DLL *ptr = head;
+                while(ptr->rlink != NULL)
+                {
+                  ptr = ptr->rlink;
+                  printf("Active Bomb: %d\n",ptr->data);
+                }
+              }
+            }
+            
+        </i>
+        </pre>
+    <hr>
+    <h3>2.DLL Insertion</h3> 
+      <pre>
+        <i>
+        //Placing fake ID's in system server to robe bank
+        #include<stdio.h>
+        #include<stdlib.h>
+        struct DLL
+        {
+          int data;
+          struct DLL *rlink;
+          struct DLL *llink;
+        }*head;
+        
+        void insertion();
+        void traverse();
+        
+        void main()
+        {
+         int c;
+         head = (struct DLL*)malloc(sizeof(struct DLL));
+         head->rlink = NULL;
+         head->llink = NULL;
+         head->data = 0;
+         while(1)
+         {
+          printf("\n\t*MENU\t\n1)Inserte fake ID\n2)Traverse ALL system fake ID\n3)Exit\nEnter choice :");
+          scanf("%d",&c);
+          switch(c)
+          {
+          case 1 : insertion();
+                   break;
+          case 2 : traverse();
+                   break;
+          case 3 : exit(0);
+          default : printf("Invalid Input");
+                    break;
+          }
+         }
+        }
+        
+        void insertion()
+        {
+            int pos,key;
+            struct DLL *newnode = (struct DLL*)malloc(sizeof(struct DLL));
+            newnode->rlink = NULL;
+            newnode->llink = NULL;
+            printf("\nEnter original ID last number's :");
+            scanf("%d",&newnode->data);
+            printf("\n\t*MENU*\t\n1)Begining(employ ID)\n2)End(Driver)\n3)Any(1&2&cleaner)\nEnter The choice :");
+            scanf("%d",&pos);
+            if(pos==1)
+             {
+                if(head->rlink == NULL)
+                 {
+                   head->rlink = newnode;
+                   newnode->llink = head;
+                 }    
+                else
+                { 
+                  struct DLL *ptr = head->rlink;
+                  newnode->llink = head;
+                  newnode->rlink = ptr;
+                  head->rlink = newnode;
+                  ptr->llink = newnode;
+                }
+             }
+            else if(pos==2)
+            {
+                struct DLL *ptr = head->rlink;
+                while(ptr->rlink!=NULL)
+                  {
+                    ptr = ptr->rlink;
+                  }
+                ptr->rlink = newnode;
+                newnode->llink = ptr;
+            }
+            else if(pos==3)
+            {
+              printf("Enter Before ID to place After it :");
+              scanf("%d",&key);
+              struct DLL *ptr = head;
+              while(ptr->rlink!=NULL && ptr->data!=key)
+              {
+                ptr = ptr->rlink;
+              }
+              if(ptr->rlink==NULL && ptr->data!=key)
+              {
+                printf("!!ERROR!!,ID NOT FOUND");
+              }
+              else if(ptr->rlink==NULL && ptr->data==key)
+              {
+                ptr->rlink = newnode;
+                newnode->llink = ptr;
+              }
+              else
+              { 
+               ptr->rlink->llink = newnode;
+               newnode->rlink = ptr->rlink;
+               newnode->llink = ptr;
+               ptr->rlink = newnode;
+              }
+            }
+        }
+        
+        void traverse()
+        {
+          if(head->rlink==NULL)
+          {
+            printf("!!ERROR!!,0 ID's");
+          }
+          else
+          {
+            struct DLL *ptr = head;
+            while(ptr->rlink!=NULL)
+            {
+                ptr = ptr->rlink;
+                printf("fake ID's available are :%d\n",ptr->data);
+            }
+          }
+        }
+       </i>
+      </pre>  
+    <hr>
+    <h3>3.DLL Creation</h3> 
+       <pre>
+          <i>
+                #include<stdio.h>
+                #include<stdlib.h>
+                
+                void traverse();
+                void creation();
+                
+                struct DLL
+                {
+                  int data;
+                  struct DLL *rlink;
+                  struct DLL *llink;     
+                }*head;
+                
+                int main()
+                {
+                  int ch;
+                  head = (struct DLL*)malloc(sizeof(struct DLL));
+                  head->rlink = NULL;
+                  head->llink = NULL;
+                  head->data = 0;
+                  while(1)
+                  {
+                   printf("\n\t*MENU*\n1) Creation store IP \n2) Traverse ALL stored IP's \n3) Exit\nEnter Your Choice: ");
+                   scanf("%d",&ch);
+                   switch(ch)
+                   {
+                    case 1: creation();
+                            break;
+                            break;
+                    case 2: traverse();
+                            break;        
+                    case 3: exit(0);
+                    default: printf("Invalid choice!\n");
+                             break;
+                   }
+                  }
+                  
+                  return 0;
+                }
+                
+                void creation()
+                {
+                  struct DLL *newNode = (struct DLL*)malloc(sizeof(struct DLL));
+                  newNode->rlink = NULL;
+                  newNode->llink = NULL;
+                  printf("Enter victim IP's last digites After 198.255.255.(1~255) : ");
+                  scanf("%d",&newNode->data);
+                  if(head->rlink == NULL)
+                  {
+                    head->rlink = newNode;
+                    newNode->llink = head;
+                  }
+                  else
+                  {
+                    struct DLL *ptr = head->rlink;
+                    while(ptr->rlink != NULL)
+                    {
+                      ptr = ptr->rlink;
+                    }
+                    ptr->rlink = newNode;
+                    newNode->llink = ptr;
+                  }
+                }
+                
+                void traverse()
+                {
+                  if(head->rlink == NULL)
+                  {
+                    printf("NO IP's stored\n");
+                  }
+                  else 
+                  {
+                    struct DLL *ptr = head;
+                    while(ptr->rlink != NULL)
+                    {
+                      ptr = ptr->rlink;
+                      printf("Active IP's: %d\n",ptr->data);
+                    }
+                  }
+                }
+            </i>      
+       </pre> 
+    </body>
+
+</html>
