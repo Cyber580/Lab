@@ -1,0 +1,92 @@
+<html>
+  <head> 
+   <meta name="DS" content="Lab program's">
+  </head>  
+   <body>
+    <em>
+    <h1 class="heading1"> DS LAB PROGRAM'S</h1>
+    </em>
+    <style>
+      .heading1{
+        color:rgb(0, 255, 234);
+        letter-spacing: 3px;
+        font-family: Arial;
+        font-weight: 400px;
+        font-style: italic;
+        background-color: rgba(0,0,0,0.1)
+      }
+    </style>
+    <br>
+    <h3>STACKS USING ARRAY'S</h3> 
+     <pre>
+            #include<stdio.h> //stdio.h
+            #define size 5
+            int top=-1,s[5];
+            void push(int);
+            void pop();
+            void traverse();
+            void main()
+            {
+            int item,ch;
+            while(1)
+            {
+            printf("\n Enter your choice 1.push 2.pop 3.traverse: ");
+            scanf("%d",&ch);
+            switch(ch)
+            {
+            case 1: printf("\n Enter the item: ");
+            scanf("%d",&item);
+            push(item);
+            break;
+            case 2: pop();
+            break;
+            case 3: traverse();
+            break;
+            default:exit(0);
+            }
+            }
+            }
+            void push(int item)
+            {
+            if(top==size - 1)
+            {
+            printf("\n Stack is full ");
+            }
+            else
+            {
+            top=top+1;
+            s[top]=item;
+            }
+            }
+            void pop()
+            {
+            if(top==-1)
+            {
+            printf("\n Stack is empty");
+            }
+            else
+            {
+            printf("Poped item is %d",s[top]);
+            top=top-1;
+            }
+            }
+            void traverse()
+            {
+            int i;
+            if(top==-1)
+            {
+            printf("\n Stack is empty");
+            }
+            else
+            {
+            printf("\n Items of stack are: ");
+            for(i=0;i<=top;i++)
+            {
+            printf("%d\t",s[i]);
+            }
+            }
+            }
+     </per>
+    </body>
+
+</html>

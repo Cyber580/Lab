@@ -1,0 +1,108 @@
+<html>
+  <head> 
+   <meta name="DS" content="Lab program's">
+  </head>  
+   <body>
+    <em>
+    <h1 class="heading1"> DS LAB PROGRAM'S</h1>
+    </em>
+    <style>
+      .heading1{
+        color:rgb(0, 255, 234);
+        letter-spacing: 3px;
+        font-family: Arial;
+        font-weight: 400px;
+        font-style: italic;
+        background-color: rgba(0,0,0,0.1)
+      }
+    </style>
+    <br>
+    <h3>STACKS USING LINKED LIST'S</h3> 
+     <pre>
+            #include<stdio.h> //stdio.h
+            #include<conio.h> //conio.h
+            #include<stdlib.h> //stdlib
+            
+            struct s
+            {
+             int ele;
+             struct s *link;
+            }*head,*top;
+            
+            void push();
+            void pop();
+            void travers();
+            
+            void main()
+            {
+             int ch;
+             head = malloc(sizeof(struct s));
+             head->link = NULL;
+             top = NULL;
+             head->ele = 0;
+             while(1)
+             {
+              printf("\n1)push\n2)pop\n3)travers\nenter Ur choice:");
+              scanf("%d",&ch);
+              switch(ch)
+              {
+               case 1 : push();
+                    break;
+               case 2 : pop();
+                    break;
+               case 3 : travers();
+                    break;
+               default : exit(0);
+              }
+             }
+             
+            }
+            
+            void push()
+            {
+             struct s *new = malloc(sizeof(struct s));
+             new->link = NULL;
+             printf("ENter element :");
+             scanf("%d",&new->ele);
+             new->link = top;
+             head->link = new;
+             top =  new;
+            }
+            
+            void pop()
+            {
+             if(head->link == NULL)
+             {
+              printf("EMPTY Stack");
+             }
+             else
+             {
+              head->link = top->link;
+              printf("Deleted item %d",top->ele);
+              top=head->link;
+             }
+            }
+            
+            void travers()
+            {
+             struct s *ptr = head;
+             if(head->link == NULL)
+             {
+              printf("EMPTY strack");
+             }
+             else
+             {
+              printf("Items in stack are :");
+              while(ptr->link!=NULL)
+              {
+               ptr = ptr->link;
+               printf("%d\t",ptr->ele);
+              }
+            
+             }
+            
+            }
+     </per>
+    </body>
+
+</html>

@@ -1,0 +1,290 @@
+<html>
+  <head> 
+   <meta name="DS" content="Lab program's">
+  </head>  
+   <body>
+    <em>
+    <h1 class="heading1"> DS LAB PROGRAM'S</h1>
+    </em>
+    <style>
+      .heading1{
+        color:rgb(0, 255, 234);
+        letter-spacing: 3px;
+        font-family: Arial;
+        font-weight: 400px;
+        font-style: italic;
+        background-color: rgba(0,0,0,0.1)
+      }
+    </style>
+    <br>
+    <h3>SLL CREATION</h3> 
+     <pre>
+            #include//stdio.h
+            #include//conio.h
+            #include//alloc.h
+            void create();
+            void trans();
+            
+            struct node
+            {
+              int ele;
+              struct node *next;
+            }*head,*ptr,*new;
+            
+            void main()
+            {
+              int ch;
+              clrscr();
+              head = NULL;
+              while(1)
+              {
+                printf("\n\t**MENU**\t\n1.create SLL \t 2. Traverse SLL\n Enter the opertion :\t");
+                scanf("%d",&ch);
+                ptr = head;
+                switch(ch)
+                {
+                  case 1  : insertion();
+                  break;
+                  case 2 : trans();
+                  break;
+                  default : exit(0);
+                }
+              }
+            getch();
+            }
+            
+            void create()
+            {
+              int x;
+              printf("Enter the element to insert into ne node :");
+              scanf("%d",&x);
+              new = malloc(sizeof(struct node));
+              new->next =NULL;
+              new->ele =x;
+              while(ptr->next != NULL)
+                   ptr = ptr->next;
+              ptr->next =new;
+            
+            }
+            
+            
+            void trans()
+            {
+               printf("Elements in the list :");
+               while(ptr->next != NULL)
+               {
+                ptr = ptr->next;
+                printf("\t %d ",ptr->ele);
+               }
+            }
+            
+       
+     </per>
+     <br>
+     <hr>
+     <h3>SLL INSERTION</h3>
+     <pre>
+            #include//stdio.h
+            #include//conio.h
+            #include//alloc.h
+            void insertion();
+            void trans();
+            
+            struct node
+            {
+              int ele;
+              struct node *next;
+            }*head,*ptr,*new;
+            
+            void main()
+            {
+              int ch;
+              clrscr();
+              head = NULL;
+              while(1)
+              {
+                 printf("\n\t**MENU**\t\n\t1.create SLL \n\t 2. Traverse SLL\n\t Enter the opertion :\t");
+                 scanf("%d",&ch);
+                 ptr = head;
+                 switch(ch)
+                 {
+                   case 1  : insertion();
+                   break;
+                   case 2 : trans();
+                   break;
+                   default : exit(0);
+                 }
+              }
+            getch();
+            }
+            
+            void insertion()
+            {
+              int x,key,pos;
+              printf("Enter the element to insert into new node :");
+              scanf("%d",&x);
+              printf("\n\t**MENU**\t\n\t1.AT BEGININING\n\t2.After a specific element\n\t3.AT End\n Enter the choice of insertion :\t");
+              scanf("%d",&pos);
+              new = malloc(sizeof(struct node));
+              new->next =NULL;
+              new->ele =x;
+              if(pos ==1)
+               {
+                 new->next=head->next;
+                 head->next=new;
+               }
+              else if(pos==2)
+               {
+                 printf("Enter a key value after insertion done :");
+                 scanf("%d",&key);
+                 ptr=head;
+                 while(ptr->next != NULL && ptr->ele != key)
+                   ptr=ptr->next;
+                 if(ptr->next == NULL && ptr->ele != key)
+                   printf("key element not found in SLL no insertion can't be done ");
+                 else
+                   new->next=ptr->next;
+                   ptr->next=new;
+               }
+               else if(pos==3)
+                {
+                  ptr=head;
+                  while(ptr->next != NULL)
+                  {
+                   ptr=ptr->next;
+                  ptr->next=new;
+                  }
+                }
+            }
+            
+            void trans()
+            {
+               ptr=head;
+               printf("head=");
+               printf("head->link=");
+               if(head == NULL)
+               {
+                 printf("SLL is EMPTY");
+               }
+               else
+               {
+                 printf("Elements in the list :");
+                 while(ptr->next != NULL)
+                   ptr=ptr->next;
+                   printf("\t%d",ptr->ele);
+               }
+            }
+            
+       </pre>
+       <br>
+       <hr>
+       <h3>SLL DELETION</h3>
+       <pre>
+            #include//stdio.h
+            #include//conio.h
+            #include//alloc.h
+            void deletion();
+            void trans();
+            void create();
+            struct node
+            {
+              int ele;
+              struct node *next;
+            }*head,*ptr,*ptr1,*new;
+            void create()
+            {
+              int x;
+              printf("Enter the element to insert into ne node :");
+              scanf("%d",&x);
+              new = malloc(sizeof(struct node));
+              new->next =NULL;
+              new->ele =x;
+              while(ptr->next != NULL)
+                   ptr = ptr->next;
+              ptr->next =new;
+            
+            }
+            void main()
+            {
+              int ch;
+              clrscr();
+              head = NULL;
+              while(1)
+              {
+                 printf("\n\t**MENU**\t\n\t1.create SLL \n 2. Traverse SLL\n3.deletion\n Enter the opertion :\t");
+                 scanf("%d",&ch);
+                 ptr = head;
+                 switch(ch)
+                 {
+                   case 1  : create();
+                   break;
+                   case 2 : trans();
+                   break;
+                   case 3: deletion();
+                   break;
+                   default : exit(0);
+                 }
+              }
+            //getch();
+            }
+            
+            void deletion()
+            {
+             int pos,key;
+             if(ptr->next == NULL)
+                printf("it's empty");
+             else
+            
+             {
+              printf("\n\t\t**MENU**\n1.From BEGINNING of SLL \n 2.Delete a specific element into SLL\t 3.END of SLL \n Enter the choice of insertion :");
+              scanf("%d",&pos);
+               if(pos==1)
+               {
+                 ptr=head->next;
+                 printf("Element %d deleted from Beginning of SLL ",ptr->ele);
+                 head->next=ptr->next;
+                 free(ptr);
+               }
+               else if(pos==3)
+               {
+                   ptr=head;
+                   while(ptr->next!=NULL)
+                     ptr1=ptr;
+                    ptr=ptr->next;
+                   ptr->next=NULL;
+                   printf("element %d delected from End of SLL",ptr->ele);
+                   free(ptr);
+               }
+               else if (pos==2)
+               {
+                   printf("Enter a key value to eliminate from SLL :");
+                   scanf("%d",&key);
+                   ptr=head;
+                   while(ptr->next!=NULL && ptr->ele!=key)
+                    ptr1=ptr;
+                ptr=ptr->next;
+                   if(ptr->next==NULL && ptr->ele!=key)
+                  printf("key element not found in SLL,so deletion can't be done");
+                   else
+                  ptr1->next=ptr->next;
+                  printf("Element %d deleted from End of SLL",ptr->ele);
+                  free(ptr);
+                }
+              }
+            }
+            void trans()
+            {
+               printf("Elements in the list :");
+               while(ptr->next != NULL)
+               {
+                ptr = ptr->next;
+                printf("\t %d ",ptr->ele);
+               }
+            }
+            
+            
+            
+       </pre>
+    </body>
+
+</html>

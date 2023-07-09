@@ -1,0 +1,355 @@
+<html>
+  <head>
+   <meta name="DS" content="Lab program's">
+  </head>  
+   <body>
+    <em>
+      <h1 class="heading1"> DS LAB PROGRAM'S</h1>
+      </em>
+      <style>
+        .heading1{
+        color:rgb(0, 255, 234);
+        letter-spacing: 3px;
+        font-family: Arial;
+        font-weight: 400px;
+        font-style: italic;
+        background-color: rgba(0,0,0,0.1)
+      }
+      </style>
+      <br>
+    <h3>1.CLL Deletion </h3> 
+     <pre>
+        <i>
+                #include<stdio.h> //stdio.h
+                #include<stdlib.h> //stdlib.h
+                
+                struct CLL
+                {
+                 int data;
+                 struct CLL *link;
+                }*head;
+                
+                void create();
+                void traverse();
+                void delete();
+                
+                void main()
+                {
+                  int c;
+                  head = (struct CLL*)malloc(sizeof(struct CLL));
+                  head->link = head;
+                  head->data = 0;
+                  while(1)
+                  {
+                    printf("\n\t*MENU*\n1)create space store ip\n2)traverse all ip's\n3)delete ip's\n4)Exit\nEnter Ur choice: ");
+                    scanf("%d",&c);
+                    switch(c)
+                    {
+                        case 1 : create();
+                                 break;
+                        case 2 : traverse();
+                                 break;
+                        case 3 : delete();
+                                 break;
+                        case 4 : exit(0);
+                        default : printf("Input Invalid");
+                                  break;
+                    }
+                  }
+                }
+                
+                void create()
+                {
+                  struct CLL *newnode =(struct CLL*)malloc(sizeof(struct CLL));
+                  newnode->link = NULL;
+                  printf("\nEnter last digits of DNS 28.0.0.(1~255):");
+                  scanf("%d",&newnode->data);
+                  if(head->link == head)
+                  {
+                    head->link = newnode;
+                    newnode->link = head;
+                  }
+                  else
+                  {
+                    struct CLL *ptr = head;
+                    while(ptr->link!=head)
+                    {
+                        ptr = ptr->link;
+                    }
+                    ptr->link = newnode;
+                    newnode->link = head;
+                  }
+                }
+                
+                void delete()
+                {
+                  if(head->link == head)
+                  {
+                    printf("!!ERROR!!,0 IP's");
+                  }
+                  else
+                  {
+                    int pos,key;
+                    printf("\n\t*MENU*\n1)Begining IP\n2)Ending IP\n3)Any of IP\nEnter choice :");
+                    scanf("%d",&pos);
+                    if(pos==1)
+                    {
+                      struct CLL *ptr = head->link;
+                      head->link = ptr->link;
+                      printf("DELETED IP from system %d",ptr->data);
+                      free(ptr);
+                    }
+                    else if(pos==2)
+                    {
+                        struct CLL *ptr = head->link;
+                        struct CLL *ptr1 = ptr;
+                        while(ptr->link!=head)
+                        {
+                            ptr1 = ptr;
+                            ptr = ptr->link;
+                        }
+                        ptr1->link = head;
+                        printf("DELETED IP from system %d",ptr->data);
+                        free(ptr);
+                    }
+                    else if(pos==3)
+                    {
+                       struct CLL *ptr = head->link;
+                       struct CLL *ptr1 , *ptr2;
+                       printf("Enter before IP :");
+                       scanf("%d",&key);
+                       while(ptr->link!=head && ptr->data!=key)
+                       {
+                        ptr1 = ptr;
+                        ptr = ptr->link;
+                       }
+                       if(ptr->link==head && ptr->data!=key)
+                       {
+                        printf("IP NOT FOUND");
+                       }
+                       else if(ptr->link==head && ptr->data==key)
+                       {
+                        ptr1->link = head;
+                        printf("DELETED IP 28.0.0.%d",ptr->data);
+                        free(ptr);
+                       }
+                       else
+                       {
+                        ptr2 = ptr->link;
+                        ptr1->link = ptr2;  
+                        printf("DELETED IP 28.0.0.%d",ptr->data);
+                        free(ptr);
+                       }
+                    }
+                  }
+                }
+                
+                void traverse()
+                {
+                 if(head->link==head)
+                 {
+                    printf("\n!!ERROR!!,0 IP");
+                 }
+                 else
+                 {
+                    struct CLL *ptr = head->link;
+                    while(ptr!=head)
+                    {
+                        printf("Active are :28.0.0.%d\n",ptr->data);
+                        ptr = ptr->link;
+                    }
+                 }
+                }
+        </i>
+      </pre>
+      <hr>
+      <br>
+      <h3>2.CLL Insertion</h3> 
+     <pre>
+        <i>
+                #include<stdio.h>
+                #include<stdlib.h>
+                
+                void inserte();
+                void traverse();
+                
+                struct CLL
+                {
+                 int data;
+                 struct CLL *link;
+                }*head;
+                
+                void main()
+                {
+                  int c;
+                  head = (struct CLL*)malloc(sizeof(struct CLL));
+                  head->link = head;
+                  head->data = 0;
+                  while(1)
+                  {
+                    printf("\n\t*MENU*\n1)inserte space store ip\n2)traverse all ip's\n3)Exit\nEnter Ur choice: ");
+                    scanf("%d",&c);
+                    switch(c)
+                    {
+                        case 1 : inserte();
+                                 break;
+                        case 2 : traverse();
+                                 break;
+                        case 3 : exit(0);
+                        default : printf("Input Invalid");
+                                  break;
+                    }
+                  }
+                }
+                
+                void inserte()
+                {
+                    int pos,key;
+                    struct CLL *newnode =(struct CLL*)malloc(sizeof(struct CLL));
+                    printf("\nEnter last digits of DNS 28.0.0.(1~255):");
+                    scanf("%d",&newnode->data);
+                    printf("\n\t*MENU*\n1)Begining IP\n2)Ending IP\n3)Any of IP\nEnter choice :");
+                    scanf("%d",&pos);
+                    if(pos==1)
+                    {
+                      newnode->link = head->link;
+                      head->link = newnode;
+                    }
+                    else if(pos==2)
+                    {
+                        struct CLL *ptr = head;
+                        while(ptr->link!=head)
+                        {
+                            ptr = ptr->link;
+                        }
+                        ptr->link = newnode;
+                        newnode->link = head;
+                    }
+                    else if(pos==3)
+                    {
+                       struct CLL *ptr = head;
+                       printf("Enter before IP :");
+                       scanf("%d",&key);
+                       while(ptr->link!=head && ptr->data!=key)
+                       {
+                        ptr = ptr->link;
+                       }
+                       if(ptr->link==head && ptr->data!=key)
+                       {
+                        printf("IP NOT FOUND");
+                       }
+                       else if(ptr->link==head && ptr->data==key)
+                       {
+                        ptr->link = newnode;
+                        newnode->link = head;
+                       }
+                       else
+                       {
+                        newnode->link = ptr->link;
+                        ptr->link = newnode;
+                       }
+                    }
+                }
+                
+                void traverse()
+                {
+                 if(head->link==head)
+                 {
+                    printf("\n!!ERROR!!,0 IP");
+                 }
+                 else
+                 {
+                    struct CLL *ptr = head->link;
+                    while(ptr!=head)
+                    {
+                        printf("Active are :28.0.0.%d\n",ptr->data);
+                        ptr = ptr->link;
+                    }
+                 }
+                }
+        </i>
+      </pre>
+      <hr>
+      <br>
+      <h3>3.CLL Creation</h3> 
+     <pre>
+        <i>
+                #include<stdio.h>
+                #include<stdlib.h>
+                
+                struct CLL
+                {
+                 int data;
+                 struct CLL *link;
+                }*head;
+                
+                void create();
+                void traverse();
+                
+                void main()
+                {
+                  int c;
+                  head = (struct CLL*)malloc(sizeof(struct CLL));
+                  head->link = head;
+                  head->data = 0;
+                  while(1)
+                  {
+                    printf("\n\t*MENU*\n1)create space store ip\n2)traverse all ip's\n3)Exit\nEnter Ur choice: ");
+                    scanf("%d",&c);
+                    switch(c)
+                    {
+                        case 1 : create();
+                                 break;
+                        case 2 : traverse();
+                                 break;
+                        case 3 : exit(0);
+                        default : printf("Input Invalid");
+                                  break;
+                    }
+                  }
+                }
+                
+                void create()
+                {
+                  struct CLL *newnode =(struct CLL*)malloc(sizeof(struct CLL));
+                  newnode->link = NULL;
+                  printf("\nEnter last digits of DNS 28.0.0.(1~255):");
+                  scanf("%d",&newnode->data);
+                  if(head->link == head)
+                  {
+                    head->link = newnode;
+                    newnode->link = head;
+                  }
+                  else
+                  {
+                    struct CLL *ptr = head;
+                    while(ptr->link!=head)
+                    {
+                        ptr = ptr->link;
+                    }
+                    ptr->link = newnode;
+                    newnode->link = head;
+                  }
+                }
+                
+                void traverse()
+                {
+                 if(head->link==head)
+                 {
+                    printf("\n!!ERROR!!,0 IP");
+                 }
+                 else
+                 {
+                    struct CLL *ptr = head->link;
+                    while(ptr!=head)
+                    {
+                        printf("Active are :28.0.0.%d\n",ptr->data);
+                        ptr = ptr->link;
+                    }
+                 }
+                }
+        </i>
+      </pre>
+   </body>
+
+</html>

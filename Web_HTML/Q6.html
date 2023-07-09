@@ -1,0 +1,113 @@
+<html>
+  <head> 
+   <meta name="DS" content="Lab program's">
+  </head>  
+   <body>
+    <em>
+    <h1 class="heading1"> DS LAB PROGRAM'S</h1>
+    </em>
+    <style>
+      .heading1{
+        color:rgb(0, 255, 234);
+        letter-spacing: 3px;
+        font-family: Arial;
+        font-weight: 400px;
+        font-style: italic;
+        background-color: rgba(0,0,0,0.1)
+      }
+    </style>
+    <br>
+    <h3>QUEUE ARRAY</h3> 
+     <pre>
+            #include//stdio.h
+            #include//conio.h
+            #define size 5
+            
+            int i,FRONT=-1,REAR=-1,s[size];
+            
+            void enqueue(int);
+            void dequeue();
+            void travers();
+            
+            int main()
+            {
+             int ch,t;
+             while(1)
+             {
+              printf("\n1)Enqueue\n2)denqueue\n3)travers\nenter choice:");
+              scanf("%d",&ch);
+              switch(ch)
+              {
+               case 1: printf("\nEnter iteam :");
+                   scanf("%d",&t);
+                   enqueue(t);
+                   break;
+               case 2 : dequeue();
+                    break;
+               case 3 : travers();
+                    break;
+               default : exit(0);
+            
+              }
+             }
+            }
+            
+            void enqueue(int x)
+            {
+             if(REAR == size-1)
+             {
+              printf("overflow");
+             }
+             else if(FRONT == -1 && REAR == -1)
+             {
+              FRONT++;
+              REAR++;
+              s[REAR] = x;
+             }
+             else
+             {
+              REAR++;
+              s[REAR] = x;
+             }
+            }
+            
+            void dequeue()
+            {
+             if(FRONT == -1 && REAR == -1)
+             {
+              printf("\nEMPTY Stack");
+             }
+             else if (FRONT == REAR)
+             {
+              printf("\nDequeue element %d",s[FRONT]);
+              FRONT = -1;
+              REAR = -1;
+             }
+             else
+             {
+              printf("\nDequeue element %d",s[FRONT]);
+              FRONT++;
+             }
+            }
+            
+            void travers()
+            {
+             int i;
+             if(FRONT == -1 && REAR == -1)
+             {
+              printf("\nEMPTY stack");
+             }
+             else
+             {
+              printf("\nitems is Queue are :");
+              for(i = FRONT ; i <= REAR ; i++ )
+              {
+               printf("%d\t",s[i]);
+              }
+             }
+            }
+
+     </per>
+    </body>
+
+</html>
